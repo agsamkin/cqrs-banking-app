@@ -1,0 +1,25 @@
+version: "3.9"
+
+networks:
+  banking-network:
+    driver: bridge
+
+volumes:
+  banking-data:
+    driver: local
+
+services:
+  postgres:
+    image: postgres:14.7-alpine
+    networks:
+      - banking-network
+    env_file:
+      - .env
+    ports:
+      - "15432:5432"
+    volumes:
+      - banking-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: "trust"
+    restart: always
+
