@@ -3,6 +3,7 @@ package com.example.domain.model;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import lombok.Getter;
@@ -16,17 +17,21 @@ import java.util.UUID;
 
 @Getter
 @Setter
-@Table(name = "accounts")
+@Table(name = "transactions")
 @Entity
-public class Account {
+public class Transaction {
 
     @Id
     @GeneratedValue
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private UUID id;
 
-    private String number;
+    @ManyToOne
+    private Card from;
 
-    private BigDecimal balance;
+    @ManyToOne
+    private Card to;
+
+    private BigDecimal amount;
 
 }
