@@ -6,4 +6,7 @@ import com.example.service.CommandService;
 import com.example.service.QueryService;
 
 public interface ClientService extends QueryService<Client>, CommandService<Client> {
+
+    boolean existsByUsername(String username);
+
 }

@@ -4,4 +4,7 @@ import com.example.domain.model.Client;
 import com.example.service.QueryService;
 
 public interface ClientQueryService extends QueryService<Client> {
+
+    boolean existsByUsername(String username);
+
 }
