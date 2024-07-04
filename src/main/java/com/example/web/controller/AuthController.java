@@ -1,7 +1,10 @@
 package com.example.web.controller;
 
 import com.example.domain.model.Client;
+import com.example.service.auth.AuthService;
 import com.example.web.dto.ClientDto;
+import com.example.web.dto.LoginRequestDto;
+import com.example.web.dto.LoginResponseDto;
 import com.example.web.dto.OnCreate;
 import com.example.web.mapper.ClientMapper;
 import lombok.RequiredArgsConstructor;
@@ -27,7 +30,7 @@ public class AuthController {
 
     @PostMapping("/register")
     public LoginResponseDto login(@RequestBody @Validated(OnCreate.class) final LoginRequestDto loginRequestDto) {
-        authService.login(loginRequestDto);
+        return authService.login(loginRequestDto);
     }
 
 }
