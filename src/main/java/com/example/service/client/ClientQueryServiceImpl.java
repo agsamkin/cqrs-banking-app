@@ -4,6 +4,7 @@ import com.example.domain.exception.ResourceNotFoundException;
 import com.example.domain.model.Client;
 import com.example.repository.ClientRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.stereotype.Service;

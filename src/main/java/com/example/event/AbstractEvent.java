@@ -38,7 +38,7 @@ public abstract class AbstractEvent implements Event {
     private UUID aggregateId;
 
     @Enumerated(EnumType.STRING)
-    private EventType eventType;
+    private EventType type;
 
     @CreationTimestamp
     private LocalDateTime timestamp;
@@ -47,9 +47,9 @@ public abstract class AbstractEvent implements Event {
     @Convert(converter = ObjectConverter.class)
     private Object payload;
 
-    public AbstractEvent(UUID aggregateId, EventType eventType, Object payload) {
+    public AbstractEvent(UUID aggregateId, EventType type, Object payload) {
         this.aggregateId = aggregateId;
-        this.eventType = eventType;
+        this.type = type;
         this.payload = payload;
     }
 

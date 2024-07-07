@@ -1,6 +1,7 @@
 package com.example.service.client;
 
 import com.example.domain.model.Client;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
