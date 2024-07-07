@@ -7,4 +7,5 @@ public interface ClientQueryService extends QueryService<Client> {
 
     boolean existsByUsername(String username);
 
+    Client getByUsername(String username);
 }

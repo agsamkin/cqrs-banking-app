@@ -28,7 +28,7 @@ public class AuthController {
         authService.register(client);
     }
 
-    @PostMapping("/register")
+    @PostMapping("/login")
     public LoginResponseDto login(@RequestBody @Validated(OnCreate.class) final LoginRequestDto loginRequestDto) {
         return authService.login(loginRequestDto);
     }

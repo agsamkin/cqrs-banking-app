@@ -9,4 +9,6 @@ public interface ClientService extends QueryService<Client>, CommandService<Clie
 
     boolean existsByUsername(String username);
 
+    Client getByUsername(String username);
+
 }
