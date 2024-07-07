@@ -20,6 +20,6 @@ public class AccountCreateEvent extends AbstractEvent {
 
     @Override
     public void apply(Aggregate aggregate) {
-
     }
+
 }

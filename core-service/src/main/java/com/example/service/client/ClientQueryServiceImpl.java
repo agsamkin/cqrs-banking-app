@@ -32,4 +32,12 @@ public class ClientQueryServiceImpl implements ClientQueryService {
                 .orElseThrow(ResourceNotFoundException::new);
     }
 
+    @Override
+    public Client getByAccount(
+            final UUID accountId
+    ) {
+        return clientRepository.findByAccountId(accountId)
+                .orElseThrow(ResourceNotFoundException::new);
+    }
+
 }
