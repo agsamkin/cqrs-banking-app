@@ -1,10 +1,9 @@
-package com.example.service.client;
+package com.example.common.service.client;
 
 import com.example.common.domain.exception.ResourceNotFoundException;
 import com.example.common.domain.model.Client;
 import com.example.common.repository.ClientRepository;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -33,9 +32,7 @@ public class ClientQueryServiceImpl implements ClientQueryService {
     }
 
     @Override
-    public Client getByAccount(
-            final UUID accountId
-    ) {
+    public Client getByAccount(final UUID accountId) {
         return clientRepository.findByAccountId(accountId)
                 .orElseThrow(ResourceNotFoundException::new);
     }

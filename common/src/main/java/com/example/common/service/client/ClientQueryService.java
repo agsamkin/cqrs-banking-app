@@ -1,7 +1,7 @@
-package com.example.service.client;
+package com.example.common.service.client;
 
 import com.example.common.domain.model.Client;
-import com.example.service.QueryService;
+import com.example.common.service.QueryService;
 
 import java.util.UUID;
 

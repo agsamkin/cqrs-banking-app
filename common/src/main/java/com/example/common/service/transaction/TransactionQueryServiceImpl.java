@@ -1,10 +1,9 @@
-package com.example.service.transaction;
+package com.example.common.service.transaction;
 
 import com.example.common.domain.exception.ResourceNotFoundException;
 import com.example.common.domain.model.Transaction;
 import com.example.common.repository.TransactionRepository;
 import lombok.RequiredArgsConstructor;
-
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;

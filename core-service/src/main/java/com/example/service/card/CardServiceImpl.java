@@ -2,6 +2,7 @@ package com.example.service.card;
 
 import com.example.common.domain.model.Card;
 import com.example.common.domain.model.Client;
+import com.example.common.service.card.CardQueryService;
 import com.example.service.client.ClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -1,9 +1,8 @@
-package com.example.service.account;
+package com.example.common.service.account;
 
 import com.example.common.domain.exception.ResourceNotFoundException;
 import com.example.common.domain.model.Account;
 import com.example.common.repository.AccountRepository;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
