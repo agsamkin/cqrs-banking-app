@@ -4,7 +4,6 @@ import org.springframework.kafka.support.Acknowledgment;
 
 public interface CDCEventConsumer {
 
-    void process(String payload, Acknowledgment acknowledgment
-    );
+    void process(String payload, Acknowledgment acknowledgment);
 
 }

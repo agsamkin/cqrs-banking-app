@@ -11,40 +11,29 @@ import java.util.UUID;
 @Setter
 public class CardDto {
 
-    @NotNull(
-            message = "Id must be not null.",
-            groups = OnUpdate.class
-    )
-    @Null(
-            message = "Id must be null.",
-            groups = OnCreate.class
-    )
+    @NotNull(message = "Id must be not null.", groups = OnUpdate.class)
+    @Null(message = "Id must be null.", groups = OnCreate.class)
     private UUID id;
 
     @NotNull(
-            message = "Card number must be not null.",
-            groups = OnUpdate.class
-    )
-    @Null(
-            message = "Card number must be null."
+            message = "Number must be not null.",
+            groups = {OnCreate.class, OnTransactionFrom.class, OnTransactionTo.class}
     )
     private String number;
 
     @NotNull(
-            message = "Card date must be not null.",
-            groups = OnUpdate.class
-    )
-    @Null(
-            message = "Card date must be null."
+            message = "Date must be not null.",
+            groups = {OnCreate.class, OnTransactionFrom.class}
     )
     private String date;
 
     @NotNull(
-            message = "Card cvv must be not null.",
-            groups = OnUpdate.class
+            message = "Cvv must be not null.",
+            groups = {OnCreate.class, OnTransactionFrom.class}
     )
     @Null(
-            message = "Card cvv must be null."
+            message = "Cvv must be null.",
+            groups = OnTransactionTo.class
     )
     private String cvv;
 

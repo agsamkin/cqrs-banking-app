@@ -1,6 +1,5 @@
 package com.example.common.repository;
 
-
 import com.example.common.domain.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 

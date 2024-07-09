@@ -1,4 +1,4 @@
-version: "3.9"
+#version: "3.9"
 
 networks:
   banking-network:
@@ -31,7 +31,7 @@ services:
       - banking-data:/var/lib/postgresql/data
     environment:
       POSTGRES_HOST_AUTH_METHOD: "trust"
-    restart: always
+#    restart: always
 
   zookeeper:
     image: 'confluentinc/cp-zookeeper:latest'
@@ -44,6 +44,7 @@ services:
       - banking-network
     volumes:
       - zookeeper-data:/var/lib/zookeeper/data
+#    restart: always
 
   kafka:
     image: 'confluentinc/cp-kafka:latest'
@@ -62,6 +63,7 @@ services:
       - banking-network
     volumes:
       - kafka-data:/var/lib/kafka/data
+#    restart: always
 
   debezium:
     image: debezium/connect:2.4.0.Final
@@ -74,12 +76,49 @@ services:
       - OFFSET_STORAGE_TOPIC=my_connect_offsets
       - STATUS_STORAGE_TOPIC=my_connect_statuses
     user: root
-    #    command:
-    #      - bash
-    #      - -c
-    #      - "cd /on-startup; ls; ./run.sh"
+#    command:
+#      - bash
+#      - -c
+#      - "cd /on-startup; ls; ./run.sh"
     networks:
       - banking-network
     volumes:
       - debezium-data:/debezium/data
       - ./conf/:/on-startup/
+#    restart: always
+
+  core-service:
+    build:
+      dockerfile: core-service.Dockerfile
+    ports:
+      - "8081:8081"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=postgres:5432
+      - JWT_SECRET=${JWT_SECRET}
+      - JWT_ACCESS_DURATION=${JWT_ACCESS_DURATION}
+      - JWT_REFRESH_DURATION=${JWT_REFRESH_DURATION}
+    networks:
+      - banking-network
+    depends_on:
+      - postgres
+
+  event-handler:
+    build:
+      dockerfile: event-handler.Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - KAFKA_BOOTSTRAP_SERVERS=kafka:9092
+      - KAFKA_BROKER_ID=${KAFKA_BROKER_ID}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USERNAME=${POSTGRES_USERNAME}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_HOST=postgres:5432
+    networks:
+      - banking-network
+    depends_on:
+      - kafka
+      - postgres

@@ -2,7 +2,9 @@ package com.example.eventhandler.service.card;
 
 import com.example.common.domain.exception.ResourceNotFoundException;
 import com.example.common.domain.model.Card;
+import com.example.common.domain.model.Client;
 import com.example.common.repository.CardRepository;
+import com.example.common.service.client.ClientQueryService;
 import com.example.eventhandler.service.client.ClientService;
 
 import jakarta.transaction.Transactional;
@@ -20,6 +22,7 @@ public class CardServiceImpl implements CardService {
 
     private final CardRepository cardRepository;
     private final ClientService clientService;
+    private final ClientQueryService clientQueryService;
 
     @Override
     public Card getById(final UUID id) {
@@ -33,10 +36,8 @@ public class CardServiceImpl implements CardService {
         card.setDate(generateDate());
         card.setNumber(generateNumber());
         cardRepository.save(card);
-//        Client client = clientService.getByAccount(
-//                card.getAccount().getId()
-//        );
-//        clientService.addCard(client.getId(), card.getId());
+        Client client = clientQueryService.getByAccount(card.getAccount().getId());
+        clientService.addCard(client.getId(), card.getId());
         return card;
     }
 
@@ -72,10 +73,7 @@ public class CardServiceImpl implements CardService {
 
     @Override
     @Transactional
-    public void addTransaction(
-            final UUID cardId,
-            final UUID transactionId
-    ) {
+    public void addTransaction(final UUID cardId, final UUID transactionId) {
         cardRepository.addTransaction(
                 cardId.toString(),
                 transactionId.toString()

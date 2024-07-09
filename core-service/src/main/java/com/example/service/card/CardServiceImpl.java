@@ -18,30 +18,35 @@ public class CardServiceImpl implements CardService {
     private final ClientService clientService;
 
     @Override
-    public void create(Card card) {
+    public void create(final Card card) {
         cardCommandService.create(card);
     }
 
     @Override
-    public void createByClientId(UUID clientId) {
+    public void createByClientId(final UUID clientId) {
         Client client = clientService.getById(clientId);
         Card card = new Card(client.getAccount());
         cardCommandService.create(card);
     }
 
     @Override
-    public Card getById(UUID id) {
+    public Card getById(final UUID id) {
         return cardQueryService.getById(id);
     }
 
     @Override
-    public boolean existsByNumberAndDate(String number, String date) {
+    public boolean existsByNumberAndDate(final String number, final String date) {
         return cardQueryService.existsByNumberAndDate(number, date);
     }
 
     @Override
-    public Card getByNumberAndDateAndCvv(String number, String date, String cvv) {
+    public Card getByNumberAndDateAndCvv(final String number, final String date, final String cvv) {
         return cardQueryService.getByNumberAndDateAndCvv(number, date, cvv);
+    }
+
+    @Override
+    public Card getByNumberAndDate(final String number, final String date) {
+        return cardQueryService.getByNumberAndDate(number, date);
     }
 
 }

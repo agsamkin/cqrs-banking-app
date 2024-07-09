@@ -1,6 +1,5 @@
 package com.example.service.card;
 
-
 import com.example.common.domain.model.Card;
 import com.example.service.CommandService;
 import com.example.service.QueryService;
@@ -14,4 +13,6 @@ public interface CardService extends QueryService<Card>, CommandService<Card> {
     boolean existsByNumberAndDate(String number, String date);
 
     Card getByNumberAndDateAndCvv(String number, String date, String cvv);
+
+    Card getByNumberAndDate(String number, String date);
 }

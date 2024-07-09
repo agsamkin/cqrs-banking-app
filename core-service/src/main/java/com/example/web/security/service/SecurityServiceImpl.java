@@ -68,6 +68,7 @@ public class SecurityServiceImpl implements SecurityService {
         }
     }
 
+
     @Override
     public boolean canAccessTransaction(final UUID transactionId) {
         SecurityUser user = getUserFromRequest();

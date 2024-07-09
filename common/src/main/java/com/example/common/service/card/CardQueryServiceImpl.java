@@ -1,6 +1,5 @@
 package com.example.common.service.card;
 
-
 import com.example.common.domain.exception.ResourceNotFoundException;
 import com.example.common.domain.model.Card;
 import com.example.common.repository.CardRepository;
