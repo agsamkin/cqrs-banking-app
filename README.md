@@ -23,7 +23,7 @@
 docker-compose up -d
 ```
 
-2. В docker контейнере debezium, выполнить слеюущие команды:
+2. В docker контейнере debezium, выполнить следующие команды:
 
 ```shell 
 cd /on-startup/
