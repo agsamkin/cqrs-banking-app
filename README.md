@@ -2,15 +2,15 @@
 
 Проект для демонстрации подходов CQRS и Event-Sourcing.
 
-## common
-Сервис содержит общий код и подключается как зависимость в сервисах core-service и event-handler
+## Common service 
+Сервис содержит общий код и подключается как зависимость в сервисах Core service и Event-handler service.
 
-## core-service
+## Core service
 Сервис содержит REST API для взаимодействия с приложением.
 Для аутентификации и авторизации использется Spring Security и Jwt токены.
 Новые записи в таблице events с помощью Debezium и механизма CDC передаются в Kafka топик events.
 
-## event-handler
+## Event-handler service 
 Сервис реализует слушателя Kafka для новых событий из топика events и обработку данных событий.
 
 ## Usage
